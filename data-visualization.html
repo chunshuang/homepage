@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Data Visualization Tips</title>
+<!-- 2015-10-13 Tue 09:50 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Jarod Tian" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Data Visualization Tips</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. History</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Problem</a></li>
+<li><a href="#sec-1-2">1.2. 21369565</a></li>
+<li><a href="#sec-1-3">1.3. Benefit</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Visualized verification</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Visualized results</a></li>
+<li><a href="#sec-2-2">2.2. Data we care</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Visualization Tool</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Gnuplot</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. Official website:  www.gnuplot.info</a></li>
+<li><a href="#sec-3-1-2">3.1.2. Gallery</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. Gnuplot Feature</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. Open source</a></li>
+<li><a href="#sec-3-2-2">3.2.2. Free of use</a></li>
+<li><a href="#sec-3-2-3">3.2.3. Simple to use</a></li>
+<li><a href="#sec-3-2-4">3.2.4. Cross-platform</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Automation</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Combine all parts via script language</a>
+<ul>
+<li><a href="#sec-4-1-1">4.1.1. What need to be automated</a></li>
+<li><a href="#sec-4-1-2">4.1.2. Which language</a></li>
+<li><a href="#sec-4-1-3">4.1.3. Demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Backup</a>
+<ul>
+<li><a href="#sec-5-1">5.1. My script</a></li>
+<li><a href="#sec-5-2">5.2. Gnuplot tutorial</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> History</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Problem</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>small I/O starving observation (via 'vdbench'):
+<pre class="example">
+   @ Jun 30, 2015  interval   i/o   MB/sec   bytes read    resp     read     write     resp     resp queue  cpu% cpu%
+                             rate  1024**2     i/o pct     time     resp     resp      max    stddev depth sys+u  sys
+14:54:20.048         1    2936.00   194.59   69498 0.00    0.259    0.000    0.259    1.151    0.096   0.8   1.4 0.7
+14:54:21.011         2    3225.00   214.47   69733 0.00    0.395    0.000    0.395    4.307    0.619   1.3   0.7 0.5
+14:54:22.011         3    1341.00    89.15   69711 0.00    2.977    0.000    2.977   11.029    0.760   4.0   0.6 0.4
+14:54:23.010         4    2294.00   154.04   70410 0.00    1.734    0.000    1.734   11.663    1.470   4.0   0.8 0.7
+14:54:24.009         5    7263.00   486.03   70168 0.00    0.356    0.000    0.356    2.654    0.173   2.6   1.1 0.8
+14:54:25.009         6    3531.00   231.21   68659 0.00    0.258    0.000    0.258    1.126    0.091   0.9   0.6 0.5
+14:54:26.014         7    3176.00   209.23   69077 0.00    0.393    0.000    0.393    4.212    0.608   1.3   0.9 0.6
+14:54:27.009         8    1311.00    87.75   70188 0.00    3.049    0.000    3.049    5.125    0.567   4.0   0.5 0.4
+14:54:28.012         9    2087.00   137.78   69223 0.00    1.906    0.000    1.906    9.654    1.506   4.0   0.6 0.5
+14:54:29.011        10    7409.00   492.65   69723 0.00    0.439    0.000    0.439    2.568    0.216   3.3   1.1 0.8
+</pre>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 21369565</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>add 'max-xfer-size' property into sd driver for  HGST SSD specifically
+</li>
+<li>target to 200G, 400G and 1.6T capacity disks
+</li>
+<li>set 128k as default value of max transfer size
+</li>
+<li>ZFS makes use of this property to improve I/O performance in afp product
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Benefit</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>avoid starving of small I/O (64k ~ 128k)
+</li>
+<li>improve I/O stability of throughput
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Visualized verification</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Visualized results</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<div class="figure">
+<p><img src="./2-loads-1m.png" alt="2-loads-1m.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./2-loads-1m-resp.png" alt="2-loads-1m-resp.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./all-mts-thr.png" alt="all-mts-thr.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./all-mts-resp.png" alt="all-mts-resp.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./reg-thr.png" alt="reg-thr.png" />
+</p>
+</div>
+
+
+<div class="figure">
+<p><img src="./reg-resp.png" alt="reg-resp.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Data we care</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>'vdbench' summary data
+
+<pre class="example">
+    Throughput  Response
+                  time
+         |          |
+         V          V
+ --------------------------
+ 1     194.59     0.259   
+ 2     214.47     0.395   
+ 3      89.15     2.977   
+ 4     154.04     1.734   
+ 5     486.03     0.356   
+ 6     231.21     0.258   
+ 7     209.23     0.393   
+ 8      87.75     3.049   
+ 9     137.78     1.906   
+10     492.65     0.439   
+...    ...        ...
+</pre>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Visualization Tool</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Gnuplot</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Official website:  <a href="http://www.gnuplot.info/">www.gnuplot.info</a></h4>
+</div>
+
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> Gallery</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+<img src="./gnuplot.png" alt="gnuplot.png" />  <img src="./gnuplot-2.png" alt="gnuplot-2.png" />
+</p>
+
+
+<div class="figure">
+<p><img src="./gnuplot-4.png" alt="gnuplot-4.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Gnuplot Feature</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Open source</h4>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> Free of use</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+free distributed, don't have to pay
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> Simple to use</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+command drive
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-4" class="outline-4">
+<h4 id="sec-3-2-4"><span class="section-number-4">3.2.4</span> Cross-platform</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<p>
+Unix-like, OSX, Windows(cygwin/MinGW)
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Automation</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Combine all parts via script language</h3>
+<div class="outline-text-3" id="text-4-1">
+</div><div id="outline-container-sec-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1"><span class="section-number-4">4.1.1</span> What need to be automated</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<ul class="org-ul">
+<li>filter raw data to generate data we care
+</li>
+<li>configure visualization tool
+</li>
+<li>generate visualization result (e.g., png file)
+</li>
+<li>archive testing result
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-2" class="outline-4">
+<h4 id="sec-4-1-2"><span class="section-number-4">4.1.2</span> Which language</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<ul class="org-ul">
+<li>Perl, Ruby and Python etc.
+</li>
+<li>sed, awk
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-1-3" class="outline-4">
+<h4 id="sec-4-1-3"><span class="section-number-4">4.1.3</span> Demo</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<ol class="org-ol">
+<li>pick up data from vdbench output via sed &amp; awk
+
+<pre class="example">
+   @ Jun 30, 2015  interval   i/o   MB/sec   bytes read    resp     read     write     resp     resp queue  cpu% cpu%
+                             rate  1024**2     i/o pct     time     resp     resp      max    stddev depth sys+u  sys
+14:54:20.048         1    2936.00   194.59   69498 0.00    0.259    0.000    0.259    1.151    0.096   0.8   1.4 0.7
+14:54:21.011         2    3225.00   214.47   69733 0.00    0.395    0.000    0.395    4.307    0.619   1.3   0.7 0.5
+14:54:22.011         3    1341.00    89.15   69711 0.00    2.977    0.000    2.977   11.029    0.760   4.0   0.6 0.4
+</pre>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span class="linenr">1: </span>sed -n '/^..:/p' data-file|awk '{print $7}'
+</pre>
+</div>
+</li>
+
+<li>plot with Gnuplot. Ruby invoke Gnuplot example:
+
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span class="linenr">1: </span>IO.popen("gnuplot", "w") { |pipe|
+<span class="linenr">2: </span>  pipe.puts("set term png")
+<span class="linenr">3: </span>  pipe.puts("set output 'sin.png'")
+<span class="linenr">4: </span>  pipe.puts("plot sin(x)")
+<span class="linenr">5: </span>  pipe.puts("quit")
+<span class="linenr">6: </span>}
+<span class="linenr">7: </span>
+<span class="linenr">8: </span>system("display sin.png")
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Backup</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> My script</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Perl script:  <a href="./analyze.pl">analyze.pl</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Gnuplot tutorial</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+<a href="./gnuplot_tutorial.pdf">Tutorial.pdf</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: Oct 10th, 2015</p>
+<p class="author">Author: Jarod Tian</p>
+<p class="date">Created: 2015-10-13 Tue 09:50</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
